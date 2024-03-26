@@ -3,6 +3,7 @@ from scrapy.http import Request
 from scrapy import Selector
 import pandas as pd
 import json
+import apify
 
 
 class SjSpider(scrapy.Spider):
@@ -46,9 +47,10 @@ class SjSpider(scrapy.Spider):
             owner_id=(data['PropertyQuickRefID'])
             party_id=(data['PartyQuickRefID'])
 
-            yield{
+            output = {
                 'owner_id':owner_id,
                 'party_id':party_id
 
             }
+            apify.pushData(output)
 
